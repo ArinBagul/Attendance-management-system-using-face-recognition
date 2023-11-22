@@ -18,10 +18,10 @@ class Student:
         else:
             try:
                 conn = mysql.connector.connect(
-                    host="localhost",
-                    username="root",
-                    password="1234",
-                    database="face_recognizer",
+                    host="your_host_name",
+                    username="your_mysql_username",
+                    password="your_password",
+                    database="your_database_name",
                 )
                 my_cursor = conn.cursor()
                 my_cursor.execute(
