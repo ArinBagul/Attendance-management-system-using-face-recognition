@@ -18,10 +18,10 @@ class Student:
         else:
             try:
                 conn = mysql.connector.connect(
-                    host="your_host_name",
-                    username="your_mysql_username",
-                    password="your_password",
-                    database="your_database_name",
+                    host="localhost",
+                    username="root",
+                    password="1234",
+                    database="face_recognizer",
                 )
                 my_cursor = conn.cursor()
                 my_cursor.execute(
@@ -606,7 +606,7 @@ class Student:
         )
         take_sample_btn.grid(row=0, column=4)
 
-        # Right lable frame
+        # Right label frame
         Right_frame = LabelFrame(
             main_frame,
             bd=2,

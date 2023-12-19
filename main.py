@@ -1,14 +1,29 @@
 from tkinter import *
 from tkinter import ttk
+import tkinter
 from PIL import Image, ImageTk
 import os
+from time import strftime
+from datetime import datetime
+
 
 from student import Student
 from train import Train
 from face_recognition import Face_Recognition
+from attendance import Attendance
+from developer import Developer
+from help import Help
 
 
 class Face_Recognition_System:
+
+    def iExit(self):
+        self.iExit = tkinter.messagebox.askyesno("Face Recognition", "Do you want to exit?",parent=self.root)
+        if self.iExit > 0:
+            self.root.destroy()
+        else:
+            return
+
     def open_img(self):
         os.startfile("dataset")
 
@@ -23,6 +38,18 @@ class Face_Recognition_System:
     def face_data(self):
         self.new_window = Toplevel(self.root)
         self.app = Face_Recognition(self.new_window)
+
+    def attendance_data(self):
+        self.new_window = Toplevel(self.root)
+        self.app = Attendance(self.new_window)
+
+    def developer_data(self):
+        self.new_window = Toplevel(self.root)
+        self.app = Developer(self.new_window)
+
+    def help_data(self):
+        self.new_window = Toplevel(self.root)
+        self.app = Help(self.new_window)
 
     def __init__(self, root):
         self.root = root
@@ -71,6 +98,21 @@ class Face_Recognition_System:
         )
         title_lbl.place(x=0, y=0, width=1200, height=40)
 
+        # =============== Time ======================
+        def time():
+            string = strftime("%H:%M:%S")
+            lbl.config(text=string)
+            lbl.after(1000, time)
+
+        lbl = Label(
+            text=title_lbl,
+            font=("Times new roman",14,"bold"),
+            background="white",
+            foreground="red"
+        )
+        lbl.place(x=0,y=0)
+        time()
+
         # Adding Buttons
         # Top Buttons
         # Student button
@@ -118,7 +160,7 @@ class Face_Recognition_System:
         img6 = img6.resize((150, 150), Image.ADAPTIVE)
         self.photoimg6 = ImageTk.PhotoImage(img6)
 
-        b3 = Button(bg_img, image=self.photoimg6, cursor="hand2")
+        b3 = Button(bg_img, image=self.photoimg6, cursor="hand2",command=self.attendance_data)
         b3.place(x=600, y=100, width=150, height=150)
 
         b3_1 = Button(
@@ -128,6 +170,7 @@ class Face_Recognition_System:
             bg="darkblue",
             fg="white",
             cursor="hand2",
+            command=self.attendance_data
         )
         b3_1.place(x=600, y=260, width=150, height=30)
 
@@ -136,7 +179,7 @@ class Face_Recognition_System:
         img7 = img7.resize((150, 150), Image.ADAPTIVE)
         self.photoimg7 = ImageTk.PhotoImage(img7)
 
-        b4 = Button(bg_img, image=self.photoimg7, cursor="hand2")
+        b4 = Button(bg_img, image=self.photoimg7, cursor="hand2", command=self.help_data)
         b4.place(x=850, y=100, width=150, height=150)
 
         b4_1 = Button(
@@ -146,6 +189,7 @@ class Face_Recognition_System:
             bg="darkblue",
             fg="white",
             cursor="hand2",
+            command=self.help_data
         )
         b4_1.place(x=850, y=260, width=150, height=30)
 
@@ -193,7 +237,7 @@ class Face_Recognition_System:
         img10 = img10.resize((150, 150), Image.ADAPTIVE)
         self.photoimg10 = ImageTk.PhotoImage(img10)
 
-        b7 = Button(bg_img, image=self.photoimg10, cursor="hand2")
+        b7 = Button(bg_img, image=self.photoimg10, cursor="hand2", command=self.developer_data)
         b7.place(x=600, y=350, width=150, height=150)
 
         b7_1 = Button(
@@ -203,6 +247,7 @@ class Face_Recognition_System:
             bg="darkblue",
             fg="white",
             cursor="hand2",
+            command=self.developer_data
         )
         b7_1.place(x=600, y=510, width=150, height=30)
 
@@ -211,7 +256,7 @@ class Face_Recognition_System:
         img11 = img11.resize((150, 150), Image.ADAPTIVE)
         self.photoimg11 = ImageTk.PhotoImage(img11)
 
-        b8 = Button(bg_img, image=self.photoimg11, cursor="hand2")
+        b8 = Button(bg_img, image=self.photoimg11, cursor="hand2", command=self.iExit)
         b8.place(x=850, y=350, width=150, height=150)
 
         b8_1 = Button(
@@ -221,6 +266,7 @@ class Face_Recognition_System:
             bg="darkblue",
             fg="white",
             cursor="hand2",
+            command=self.iExit
         )
         b8_1.place(x=850, y=510, width=150, height=30)
 
